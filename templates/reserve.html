@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Reserve a Seat</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>IT-4320 Trip Reservation System</h1>
+    <p>Select your seat from the chart below, then enter your details.</p>
+
+    <div class="seating-chart">
+      {% for i in range(12) %}
+        <p>Row {{ i }}: [
+          {% for j in range(4) %}
+            '{{ 'X' if (i, j) in taken else 'O' }}'{% if not loop.last %}, {% endif %}
+          {% endfor %}
+        ]</p>
+      {% endfor %}
+    </div>
+
+    {% with msgs = get_flashed_messages(with_categories=true) %}
+      {% if msgs %}
+        {% for category, msg in msgs %}
+          <div class="flash {{ category }}">{{ msg }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="post">
+      <label for="first_name">First Name:</label><br>
+      <input type="text" id="first_name" name="first_name" required><br><br>
+
+      <label for="last_name">Last Name:</label><br>
+      <input type="text" id="last_name" name="last_name" required><br><br>
+
+      <label for="seat_row">Choose a Row:</label><br>
+      <select id="seat_row" name="seat_row">
+        {% for i in range(12) %}
+          <option value="{{ i }}">{{ i }}</option>
+        {% endfor %}
+      </select><br><br>
+
+      <label for="seat_col">Choose a Seat:</label><br>
+      <select id="seat_col" name="seat_col">
+        {% for j in range(4) %}
+          <option value="{{ j }}">{{ j }}</option>
+        {% endfor %}
+      </select><br><br>
+
+      <button type="submit">Reserve</button>
+    </form>
+
+    <p><a href="{{ url_for('index') }}">Back to Home</a></p>
+  </div>
+</body>
+</html>
