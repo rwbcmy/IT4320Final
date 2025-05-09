@@ -1,0 +1,30 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.container {
+    width: 60%;
+    margin: 60px auto;
+    background-color: #ffffff;
+    padding: 30px;
+    text-align: center;
+}
+
+h1 {
+    color: #222;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+select {
+    padding: 8px;
+    font-size: 14px;
+}
