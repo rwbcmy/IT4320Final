@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bus Reservation</title>
+</head>
+<body>
+    <h1>Bus Reservation System</h1>
+    <a href="{{ url_for('index') }}">Main Menu</a>
+    <hr>
+    {% with messages = get_flashed_messages() %}
+        {% for msg in messages %}
+            <p style="color:red;">{{ msg }}</p>
+        {% endfor %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+</body>
+</html>
