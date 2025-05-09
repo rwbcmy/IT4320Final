@@ -84,15 +84,17 @@ def reserve():
 @app.route('/admin', methods=['GET', 'POST'])
 def admin_login():
     if request.method == 'POST':
-        username = request.form.get("username")
+        username = request.form.get("username") 
         password = request.form.get("password")
-        admin = Admin.query.filter_by(username=username, password=password).first()
-        if admin:
+
+        admin_record = Admin.query.filter_by(username=username, password=password).first()
+        if admin_record:
             session['admin'] = True
             return redirect(url_for('admin_dashboard'))
         else:
             flash('Invalid credentials', 'error')
             return redirect(url_for('admin_login'))
+
     return render_template('admin_login.html')
 
 @app.route('/admin/dashboard')
@@ -130,4 +132,12 @@ def logout():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
+
+        # Add default admin if not exists
+        if not Admin.query.filter_by(username='admin').first():
+            default_admin = Admin(username='admin', password='password')
+            db.session.add(default_admin)
+            db.session.commit()
+            print("Default admin created: admin / password")
+
     app.run(host='0.0.0.0', port=5000, debug=True)
