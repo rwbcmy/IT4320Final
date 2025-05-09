@@ -1,22 +1,11 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Trip Reservation System</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+<h2>IT-4320 Trip Reservation System</h2>
+<p>Choose an option below to proceed.</p>
 
-  <div class="container">
-    <h1>IT-4320 Trip Reservation System</h1>
-    <p>Choose an option below to proceed.</p>
-
-    <select onchange="location = this.value;">
-      <option value="#">Select an option</option>
-      <option value="{{ url_for('reserve') }}">Reserve a Seat</option>
-      <option value="{{ url_for('admin') }}">Admin Login</option>
-    </select>
-  </div>
-
-</body>
-</html>
+<select onchange="if (this.value !== '#') location.href = this.value;">
+  <option value="#">Select an option</option>
+  <option value="{{ url_for('reserve') }}">Reserve a Seat</option>
+  <option value="{{ url_for('admin_login') }}">Admin Login</option>
+</select>
+{% endblock %}
