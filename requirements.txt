@@ -1,2 +1,6 @@
-Flask
-flask_sqlalchemy
+install Flask
+install flask_sqlalchemy
+
+python app.py
+
+Visit: http://localhost:5000/
