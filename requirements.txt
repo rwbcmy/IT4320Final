@@ -5,4 +5,4 @@ python app.py
 
 Visit: http://localhost:5000/
 
-### Note: Admin username and password will print to terminal when program is run
+### Note: Admin username and password will print to terminal when program is run for the first time.
